@@ -9,9 +9,9 @@
 <link rel="icon" href="icon-192.png">
 <title>VOCALIS — Assistant de courses</title>
 <style>
-:root{--green:#174b3a;--green2:#23634c;--mint:#e8f3ec;--bg:#f5f7f4;--ink:#1b2922;--muted:#718078;--line:#e3eae5;--white:#fff;--orange:#f3a847}
+:root{--green:#174b3a;--green2:#23634c;--mint:#e8f3ec;--bg:#f5f7f4;--ink:#1b2922;--muted:#718078;--line:#e3eae5;--white:#fff;--orange:#f3a847;--red:#a33b35}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-button,input{font:inherit}button{cursor:pointer}.app{max-width:760px;margin:auto;min-height:100vh;padding:env(safe-area-inset-top) 16px calc(24px + env(safe-area-inset-bottom))}
+button,input,select{font:inherit}button{cursor:pointer}.app{max-width:760px;margin:auto;min-height:100vh;padding:env(safe-area-inset-top) 16px calc(24px + env(safe-area-inset-bottom))}
 header{display:flex;align-items:center;justify-content:space-between;padding:20px 2px 16px}.brand{display:flex;align-items:center;gap:10px}.logo{width:42px;height:42px;border-radius:14px;background:var(--green);display:grid;place-items:center;color:#fff;font-size:23px}.brand strong{font-size:21px;letter-spacing:1.5px}.brand small{display:block;color:var(--muted);font-size:11px;letter-spacing:.3px}.iconbtn{border:1px solid var(--line);background:white;border-radius:13px;padding:10px 12px;color:var(--green)}
 .hero{background:linear-gradient(135deg,#174b3a,#276a50);color:#fff;border-radius:24px;padding:20px;box-shadow:0 10px 26px #174b3a20}.hero-top{display:flex;justify-content:space-between;align-items:center}.eyebrow{font-size:11px;letter-spacing:1.3px;text-transform:uppercase;opacity:.75}.hero h1{font-size:25px;line-height:1.15;margin:8px 0}.hero p{font-size:13px;opacity:.82;margin:0 0 17px}.voicebar{display:flex;gap:9px;align-items:center}.voicebar input{flex:1;min-width:0;border:0;border-radius:14px;padding:14px 13px;background:#fff;color:var(--ink);outline:none}.mic{width:50px;height:48px;border:0;border-radius:15px;background:#f3b85f;color:#38280f;font-size:21px}.mic.listening{background:#ffdddd;animation:pulse 1s infinite}@keyframes pulse{50%{transform:scale(1.05)}}.add{border:0;background:#fff;color:var(--green);font-weight:700;border-radius:14px;padding:0 15px}
 .hint{font-size:11px;opacity:.72;margin-top:10px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:16px 0}.stat{background:#fff;border:1px solid var(--line);border-radius:17px;padding:13px}.stat b{display:block;font-size:20px;color:var(--green)}.stat span{font-size:11px;color:var(--muted)}
@@ -21,182 +21,86 @@ header{display:flex;align-items:center;justify-content:space-between;padding:20p
 .bottom{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}.secondary{border:1px solid var(--line);background:#fff;color:var(--green);border-radius:14px;padding:13px;font-weight:650}.primary{border:0;background:var(--green);color:#fff;border-radius:14px;padding:13px;font-weight:700}
 .panel{background:#fff;border:1px solid var(--line);border-radius:18px;padding:15px;margin-top:15px}.panel h3{font-size:15px;margin:0 0 10px}.budgetrow{display:flex;justify-content:space-between;font-size:13px;margin:7px 0}.budgetrow strong{color:var(--green)}.progress{height:7px;background:#edf1ee;border-radius:99px;overflow:hidden;margin-top:10px}.progress i{display:block;height:100%;background:#55a879;width:0}
 .suggest{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 0;border-top:1px solid var(--line);font-size:13px}.suggest button{border:1px solid #c9ddcf;background:var(--mint);color:var(--green);border-radius:10px;padding:7px 10px;font-size:12px;font-weight:700}
+.compare-row{padding:12px 0;border-top:1px solid var(--line);display:grid;gap:8px}.compare-head{display:flex;justify-content:space-between;gap:8px;font-size:13px;font-weight:700}.compare-prices{display:grid;gap:6px}.price-line{display:flex;align-items:center;justify-content:space-between;gap:8px;background:#f5f7f5;border-radius:10px;padding:8px 10px;font-size:12px}.price-line.best{background:var(--mint);color:var(--green);font-weight:800}.price-line small{display:block;color:var(--muted);font-weight:400;margin-top:2px}.compare-note{font-size:11px;color:var(--muted)}.compare-actions{display:flex;gap:7px;flex-wrap:wrap}.mini{border:1px solid #c9ddcf;background:var(--mint);color:var(--green);border-radius:10px;padding:7px 9px;font-size:11px;font-weight:700}.storebar{display:flex;gap:9px;align-items:center;margin:16px 0 4px}.storebar select{flex:1;min-width:0;border:1px solid var(--line);border-radius:13px;background:#fff;padding:12px;color:var(--green);font-weight:700}.storebar button{border:1px solid var(--line);background:#fff;color:var(--green);border-radius:13px;padding:11px 13px;font-weight:700}
 footer{text-align:center;color:#9aa69f;font-size:10px;padding:22px 0 8px}
-.modalback{position:fixed;inset:0;background:#10251dcc;display:none;align-items:flex-end;justify-content:center;padding:12px;z-index:5}.modalback.show{display:flex}.modal{background:#fff;border-radius:22px;padding:20px;width:min(100%,520px);max-height:85vh;overflow:auto}.modal h2{margin:0 0 14px;font-size:19px}.field{display:grid;gap:5px;margin:10px 0}.field label{font-size:12px;color:var(--muted)}.field input,.field select{width:100%;border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff;color:var(--ink)}.modalactions{display:flex;gap:9px;margin-top:16px}.modalactions button{flex:1}
+.modalback{position:fixed;inset:0;background:#10251dcc;display:none;align-items:flex-end;justify-content:center;padding:12px;z-index:5}.modalback.show{display:flex}.modal{background:#fff;border-radius:22px;padding:20px;width:min(100%,520px);max-height:88vh;overflow:auto}.modal h2{margin:0 0 14px;font-size:19px}.field{display:grid;gap:5px;margin:10px 0}.field label{font-size:12px;color:var(--muted)}.field input,.field select{width:100%;border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff;color:var(--ink)}.modalactions{display:flex;gap:9px;margin-top:16px}.modalactions button{flex:1}.notice{padding:10px 12px;background:#fff8e9;border:1px solid #f1dfb9;border-radius:12px;color:#76551d;font-size:11px;line-height:1.45;margin:10px 0}.muted{color:var(--muted)}
 @media(min-width:650px){.app{padding-left:24px;padding-right:24px}.hero{padding:25px}.hero h1{font-size:29px}}
 </style>
 </head>
 <body>
 <div class="app">
-<header>
- <div class="brand"><div class="logo">🛒</div><div><strong>VOCALIS</strong><small>LES COURSES, EN TOUTE SIMPLICITÉ</small></div></div>
- <button class="iconbtn" id="settingsBtn" aria-label="Paramètres">⚙</button>
-</header>
-<section class="hero">
- <div class="hero-top"><span class="eyebrow">Votre assistant de courses</span><span>✨</span></div>
- <h1>Qu'est-ce qu'il<br>vous faut aujourd'hui ?</h1>
- <p>Parlez naturellement ou ajoutez vos produits ci-dessous.</p>
- <div class="voicebar">
-  <input id="quickInput" placeholder="Ex. : ajoute 2 litres de lait…" autocomplete="off">
-  <button class="mic" id="micBtn" aria-label="Commande vocale">🎙️</button>
-  <button class="add" id="addBtn">Ajouter</button>
- </div>
- <div class="hint" id="voiceHint">Touchez le micro pour dicter votre liste.</div>
-</section>
-<div class="stats">
- <div class="stat"><b id="remaining">0</b><span>À acheter</span></div>
- <div class="stat"><b id="checked">0</b><span>Dans le panier</span></div>
- <div class="stat"><b id="total">0,00 €</b><span>Budget estimé</span></div>
-</div>
+<header><div class="brand"><div class="logo">🛒</div><div><strong>VOCALIS</strong><small>LES COURSES, EN TOUTE SIMPLICITÉ</small></div></div><button class="iconbtn" id="settingsBtn" aria-label="Paramètres">⚙</button></header>
+<section class="panel" style="margin-top:0"><h3>🏬 Mes magasins</h3><div class="storebar"><select id="storeSelect" aria-label="Choisir un magasin"></select><button id="manageStores">＋ Magasins</button></div><div class="sub" id="storeHint">Chaque magasin possède sa propre liste de courses et son budget.</div></section>
+<section class="hero"><div class="hero-top"><span class="eyebrow">Votre assistant de courses</span><span>✨</span></div><h1>Qu'est-ce qu'il<br>vous faut aujourd'hui ?</h1><p>Parlez naturellement ou ajoutez vos produits ci-dessous.</p><div class="voicebar"><input id="quickInput" placeholder="Ex. : ajoute 2 litres de lait…" autocomplete="off"><button class="mic" id="micBtn" aria-label="Commande vocale">🎙️</button><button class="add" id="addBtn">Ajouter</button></div><div class="hint" id="voiceHint">Touchez le micro pour dicter votre liste.</div></section>
+<div class="stats"><div class="stat"><b id="remaining">0</b><span>À acheter</span></div><div class="stat"><b id="checked">0</b><span>Dans le panier</span></div><div class="stat"><b id="total">0,00 €</b><span>Budget estimé</span></div></div>
 <div class="toolbar"><h2>Ma liste</h2><button class="iconbtn" id="shareBtn">↗ Partager</button></div>
-<div class="filters" id="filters">
- <button class="chip active" data-filter="all">Tout</button><button class="chip" data-filter="todo">À acheter</button><button class="chip" data-filter="done">Dans le panier</button>
-</div>
-<div id="shoppingList" class="list"></div>
-<div class="bottom">
- <button class="secondary" id="addManual">＋ Ajouter un produit</button>
- <button class="primary" id="clearDone">Vider les articles cochés</button>
-</div>
-<section class="panel">
- <h3>💡 Votre mémoire intelligente</h3>
- <div id="suggestions"><div class="sub">Ajoutez quelques produits pour que VOCALIS repère vos habitudes.</div></div>
-</section>
-<section class="panel">
- <h3>💶 Suivi du budget</h3>
- <div class="budgetrow"><span>Estimation des articles restants</span><strong id="budgetValue">0,00 €</strong></div>
- <div class="progress"><i id="budgetBar"></i></div>
- <div class="sub" style="margin-top:8px">Renseignez un prix sur chaque produit pour affiner votre estimation.</div>
-</section>
-<footer>VOCALIS · Prototype 1.0 · Vos données restent sur cet appareil</footer>
+<div class="filters" id="filters"><button class="chip active" data-filter="all">Tout</button><button class="chip" data-filter="todo">À acheter</button><button class="chip" data-filter="done">Dans le panier</button></div><div id="shoppingList" class="list"></div>
+<div class="bottom"><button class="secondary" id="addManual">＋ Ajouter un produit</button><button class="primary" id="clearDone">Vider les articles cochés</button></div>
+<section class="panel"><h3>💡 Votre mémoire intelligente</h3><div id="suggestions"><div class="sub">Ajoutez quelques produits pour que VOCALIS repère vos habitudes.</div></div></section>
+<section class="panel"><h3>💶 Suivi du budget</h3><div class="budgetrow"><span>Estimation des articles restants</span><strong id="budgetValue">0,00 €</strong></div><div class="progress"><i id="budgetBar"></i></div><div class="sub" style="margin-top:8px">Renseignez un prix sur chaque produit pour affiner votre estimation.</div></section>
+<section class="panel"><h3>🏷️ Comparateur intelligent</h3><div class="sub" style="margin-bottom:9px">Compare les prix enregistrés dans tes magasins. Les prix Internet ne seront affichés que si une source compatible les fournit.</div><div id="priceComparison"></div><div class="notice">Les enseignes ne proposent pas toutes une API publique de prix. Sans fournisseur connecté, VOCALIS n'invente aucun prix : les relevés manuels restent disponibles.</div><div class="compare-actions"><button class="primary" id="managePrices">＋ Saisir / comparer un prix</button><button class="secondary" id="internetInfo">ℹ Prix Internet</button></div><div class="sub" id="onlineStatus" style="margin-top:9px">Recherche Internet : aucune source de prix n'est configurée.</div></section>
+<footer>VOCALIS · Prototype 1.3 · Données conservées sur cet appareil</footer>
 </div>
 
-<div class="modalback" id="modalBack"><div class="modal">
- <h2 id="modalTitle">Ajouter un produit</h2>
- <div class="field"><label for="productName">Produit</label><input id="productName" placeholder="Ex. : lait demi-écrémé"></div>
- <div class="field"><label for="productQty">Quantité</label><input id="productQty" placeholder="Ex. : 2 bouteilles"></div>
- <div class="field"><label for="productCategory">Rayon</label><select id="productCategory"><option>Fruits et légumes</option><option>Boulangerie</option><option>Produits frais</option><option>Viandes et poissons</option><option>Épicerie</option><option>Boissons</option><option sur le="true">Hygiène et entretien</option><option>Autres</option></select></div>
- <div class="field"><label for="productPrice">Prix unitaire estimé (€) — facultatif</label><input id="productPrice" type="number" min="0" step=".01" placeholder="Ex. : 1.50"></div>
- <div class="modalactions"><button class="secondary" id="cancelModal">Annuler</button><button class="primary" id="saveProduct">Enregistrer</button></div>
-</div></div>
+<div class="modalback" id="modalBack"><div class="modal"><h2 id="modalTitle">Ajouter un produit</h2><div class="field"><label for="productName">Produit</label><input id="productName" placeholder="Ex. : lait demi-écrémé"></div><div class="field"><label for="productQty">Quantité</label><input id="productQty" placeholder="Ex. : 2 bouteilles"></div><div class="field"><label for="productCategory">Rayon</label><select id="productCategory"><option>Fruits et légumes</option><option>Boulangerie</option><option>Produits frais</option><option>Viandes et poissons</option><option>Épicerie</option><option>Boissons</option><option>Hygiène et entretien</option><option>Autres</option></select></div><div class="field"><label for="productPrice">Prix unitaire estimé (€) — facultatif</label><input id="productPrice" type="number" min="0" step=".01" placeholder="Ex. : 1.50"></div><div class="modalactions"><button class="secondary" id="cancelModal">Annuler</button><button class="primary" id="saveProduct">Enregistrer</button></div></div></div>
+
+<div class="modalback" id="priceModalBack"><div class="modal"><h2>Enregistrer un prix</h2><div class="field"><label for="priceProduct">Produit</label><input id="priceProduct" list="knownProducts" placeholder="Ex. : lait demi-écrémé"><datalist id="knownProducts"></datalist></div><div class="field"><label for="priceStore">Magasin</label><select id="priceStore"></select></div><div class="field"><label for="priceValue">Prix constaté (€)</label><input id="priceValue" type="number" min="0.01" step=".01" placeholder="Ex. : 1.09"></div><div class="field"><label for="priceSource">Origine du prix</label><select id="priceSource"><option value="manual">Saisie manuelle / ticket de caisse</option><option value="online">Prix Internet vérifié</option></select></div><div class="field"><label for="priceDate">Date du relevé</label><input id="priceDate" type="date"></div><div class="modalactions"><button class="secondary" id="cancelPrice">Annuler</button><button class="primary" id="savePrice">Enregistrer le prix</button></div><div class="sub">Un prix Internet doit avoir été vérifié sur une source réelle avant d'être enregistré comme tel.</div></div></div>
+
+<div class="modalback" id="storeModalBack"><div class="modal"><h2>Gérer mes magasins</h2><div class="field"><label for="newStoreName">Nom du nouveau magasin</label><input id="newStoreName" placeholder="Ex. : E.Leclerc, Carrefour, Lidl…"></div><div class="modalactions"><button class="secondary" id="closeStores">Fermer</button><button class="primary" id="addStore">Ajouter</button></div><div class="sub" style="margin:12px 0 6px">Mes magasins enregistrés</div><div id="storeList"></div></div></div>
+
 <script>
-const KEY='vocalis_items_v1', HISTORY='vocalis_history_v1';
-let items=JSON.parse(localStorage.getItem(KEY)||'[]');
-let history=JSON.parse(localStorage.getItem(HISTORY)||'{}');
-let filter='all', editingId=null;
-const $=id=>document.getElementById(id);
-const categories=['Fruits et légumes','Boulangerie','Produits frais','Viandes et poissons','Épicerie','Boissons','Hygiène et entretien','Autres'];
-function save(){localStorage.setItem(KEY,JSON.stringify(items));localStorage.setItem(HISTORY,JSON.stringify(history));render()}
-function clean(s){return s.toLocaleLowerCase('fr').normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim()}
-function guessCategory(name){
- const n=clean(name);
- if(/pomme|banane|orange|tomate|salade|carotte|oignon|pomme de terre|poire|fraise|courgette/.test(n))return categories[0];
- if(/pain|baguette|croissant|brioche/.test(n))return categories[1];
- if(/lait|yaourt|fromage|beurre|creme|oeuf|crème/.test(n))return categories[2];
- if(/jambon|poulet|boeuf|steak|poisson|saumon|saucisse|viande/.test(n))return categories[3];
- if(/eau|jus|soda|cafe|the|sirop/.test(n))return categories[5];
- if(/lessive|savon|shampoing|papier toilette|dentifrice|nettoyant/.test(n))return categories[6];
- return categories[4];
+const KEY='vocalis_items_v1',HISTORY='vocalis_history_v1',STORES='vocalis_stores_v1',ACTIVE_STORE='vocalis_active_store_v1',PRICEBOOK='vocalis_pricebook_v1';
+const DEFAULT_STORES=["E.Leclerc","Carrefour","Lidl","Aldi","Intermarché","Auchan","Super U","Netto"];
+let items=read(KEY,[]),history=read(HISTORY,{}),stores=read(STORES,DEFAULT_STORES);
+if(!Array.isArray(stores)||!stores.length)stores=[...DEFAULT_STORES];
+let activeStore=localStorage.getItem(ACTIVE_STORE)||stores[0]||'Mon magasin';
+let priceBook=read(PRICEBOOK,{});
+let filter='all',editingId=null;
+const $=id=>document.getElementById(id),categories=['Fruits et légumes','Boulangerie','Produits frais','Viandes et poissons','Épicerie','Boissons','Hygiène et entretien','Autres'];
+function read(key,fallback){try{const v=JSON.parse(localStorage.getItem(key));return v??fallback}catch(e){return fallback}}
+function clean(s){return String(s||'').toLocaleLowerCase('fr').normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim().replace(/\s+/g,' ')}
+function save(){localStorage.setItem(KEY,JSON.stringify(items));localStorage.setItem(HISTORY,JSON.stringify(history));localStorage.setItem(PRICEBOOK,JSON.stringify(priceBook));render()}
+function currentItems(){return items.filter(x=>(x.store||stores[0])===activeStore)}
+function euro(n){return Number(n).toFixed(2).replace('.',',')+' €'}
+function recordPrice(name,store,price,source='manual',date=new Date().toISOString().slice(0,10)){
+ const value=Number(price);if(!name||!store||!Number.isFinite(value)||value<=0)return;
+ const key=clean(name);priceBook[key]=priceBook[key]||{};
+ // Migration transparente des anciennes valeurs numériques vers le nouveau format.
+ const old=priceBook[key][store];
+ priceBook[key][store]={value,source,date,updatedAt:Date.now()};
+ localStorage.setItem(PRICEBOOK,JSON.stringify(priceBook));
 }
-function parsePhrase(raw){
- let text=raw.trim().replace(/^(ajoute|ajouter|mets|met|n'oublie pas|pense à|il me faut|je veux)\s+/i,'');
- let parts=text.split(/\s*(?:,|;|\bet\b|\bpuis\b)\s*/i).filter(Boolean);
- if(parts.length===1 && parts[0].split(/\s+/).length>5) parts=parts[0].split(/\s+(?=(?:du|de la|des|un|une|deux|trois|quatre|cinq)\s+)/i).filter(Boolean);
- parts.forEach(part=>{
-   let p=part.trim().replace(/[.!?]+$/,''); if(!p)return;
-   let qty='1', name=p;
-   const m=p.match(/^(\d+(?:[,.]\d+)?\s*(?:kg|g|l|cl|ml|paquets?|bouteilles?|boîtes?|packs?|barquettes?|pots?|unités?)?)\s+(?:de\s+|d')?(.*)$/i);
-   if(m){qty=m[1].replace(',','.');name=m[2]||p}
-   else {
-     const words={'un':'1','une':'1','deux':'2','trois':'3','quatre':'4','cinq':'5','six':'6'};
-     const w=p.match(/^(un|une|deux|trois|quatre|cinq|six)\s+(?:de\s+|d')?(.*)$/i);
-     if(w){qty=words[clean(w[1])];name=w[2]}
-   }
-   addItem(name,qty,guessCategory(name),0,false);
- });
-}
-function addItem(name,qty='1',category=null,price=0,rerender=true){
- name=name.trim();if(!name)return;
- const existing=items.find(x=>clean(x.name)===clean(name)&&!x.done);
- if(existing){existing.qty=mergeQty(existing.qty,qty)}
- else items.push({id:crypto.randomUUID?crypto.randomUUID():String(Date.now()+Math.random()),name,qty,category:category||guessCategory(name),price:Number(price)||0,done:false,created:Date.now()});
- history[clean(name)]={name,last:Date.now(),count:(history[clean(name)]?.count||0)+1};
- if(rerender)save();
-}
+function getPriceRecord(record){if(typeof record==='number')return {value:record,source:'manual',date:''};if(record&&typeof record==='object')return {value:Number(record.value),source:record.source||'manual',date:record.date||''};return null}
+function guessCategory(name){const n=clean(name);if(/pomme|banane|orange|tomate|salade|carotte|oignon|pomme de terre|poire|fraise|courgette/.test(n))return categories[0];if(/pain|baguette|croissant|brioche/.test(n))return categories[1];if(/lait|yaourt|fromage|beurre|creme|oeuf/.test(n))return categories[2];if(/jambon|poulet|boeuf|steak|poisson|saumon|saucisse|viande/.test(n))return categories[3];if(/eau|jus|soda|cafe|the|sirop/.test(n))return categories[5];if(/lessive|savon|shampoing|papier toilette|dentifrice|nettoyant/.test(n))return categories[6];return categories[4]}
 function mergeQty(a,b){if(/^\d+(\.\d+)?$/.test(a)&&/^\d+(\.\d+)?$/.test(b))return String(Number(a)+Number(b));return a+' + '+b}
-function render(){
- $('remaining').textContent=items.filter(x=>!x.done).length;
- $('checked').textContent=items.filter(x=>x.done).length;
- const total=items.filter(x=>!x.done).reduce((s,x)=>s+(Number(x.price)||0)*(parseFloat(x.qty)||1),0);
- $('total').textContent=total.toFixed(2).replace('.',',')+' €';$('budgetValue').textContent=total.toFixed(2).replace('.',',')+' €';
- $('budgetBar').style.width=Math.min(100,total/200*100)+'%';
- const list=$('shoppingList');list.innerHTML='';
- let shown=items.filter(x=>filter==='all'||(filter==='todo'&&!x.done)||(filter==='done'&&x.done));
- if(!shown.length){list.innerHTML='<div class="empty"><b>Votre liste est vide</b>Ajoutez vos premiers produits à la voix ou au clavier.</div>'}
- else categories.forEach(cat=>{
-   const group=shown.filter(x=>x.category===cat);if(!group.length)return;
-   const title=document.createElement('div');title.className='group-title';title.textContent=cat;list.append(title);
-   group.forEach(x=>{
-    const row=document.createElement('div');row.className='item'+(x.done?' done':'');
-    const check=document.createElement('button');check.className='check';check.textContent=x.done?'✓':'';check.onclick=()=>{x.done=!x.done;save()};
-    const details=document.createElement('div');details.className='details';
-    const name=document.createElement('div');name.className='name';name.textContent=x.name;
-    const sub=document.createElement('div');sub.className='sub';sub.textContent=x.category;
-    details.append(name,sub);
-    const qty=document.createElement('span');qty.className='qty';qty.textContent='× '+x.qty;
-    const price=document.createElement('span');price.className='price';price.textContent=x.price?((x.price*(parseFloat(x.qty)||1)).toFixed(2).replace('.',',')+' €'):'—';
-    const edit=document.createElement('button');edit.className='delete';edit.textContent='⋯';edit.title='Modifier';edit.onclick=()=>openModal(x);
-    const del=document.createElement('button');del.className='delete';del.textContent='×';del.title='Supprimer';del.onclick=()=>{items=items.filter(y=>y.id!==x.id);save()};
-    row.append(check,details,qty,price,edit,del);list.append(row);
-   });
- });
- renderSuggestions();
-}
-function renderSuggestions(){
- const now=Date.now(), frequent=Object.values(history).filter(x=>x.count>=2&&now-x.last>5*86400000).sort((a,b)=>b.count-a.count).slice(0,3);
- const target=$('suggestions');target.innerHTML='';
- if(!frequent.length){target.innerHTML='<div class="sub">Les produits achetés plusieurs fois réapparaîtront ici lorsqu’ils auront été absents de vos listes pendant quelques jours.</div>';return}
- frequent.forEach(x=>{const row=document.createElement('div');row.className='suggest';const t=document.createElement('span');t.textContent='🕒 '+x.name;const b=document.createElement('button');b.textContent='＋ Ajouter';b.onclick=()=>addItem(x.name);row.append(t,b);target.append(row)});
-}
-function openModal(item=null){
- editingId=item?.id||null;$('modalTitle').textContent=item?'Modifier le produit':'Ajouter un produit';
- $('productName').value=item?.name||'';$('productQty').value=item?.qty||'1';$('productCategory').value=item?.category||categories[0];$('productPrice').value=item?.price||'';
- $('modalBack').classList.add('show');$('productName').focus();
-}
+function addItem(name,qty='1',category=null,price=0,rerender=true){name=name.trim();if(!name)return;const existing=items.find(x=>(x.store||stores[0])===activeStore&&clean(x.name)===clean(name)&&!x.done);if(existing){existing.qty=mergeQty(existing.qty,qty);if(Number(price)>0)existing.price=Number(price)}else items.push({id:crypto.randomUUID?crypto.randomUUID():String(Date.now()+Math.random()),name,qty,category:category||guessCategory(name),price:Number(price)||0,done:false,created:Date.now(),store:activeStore});if(Number(price)>0)recordPrice(name,activeStore,price);history[clean(name)]={name,last:Date.now(),count:(history[clean(name)]?.count||0)+1};if(rerender)save()}
+function parsePhrase(raw){let text=raw.trim().replace(/^(ajoute|ajouter|mets|met|n'oublie pas|pense à|il me faut|je veux)\s+/i,'');let parts=text.split(/\s*(?:,|;|\bet\b|\bpuis\b)\s*/i).filter(Boolean);if(parts.length===1&&parts[0].split(/\s+/).length>5)parts=parts[0].split(/\s+(?=(?:du|de la|des|un|une|deux|trois|quatre|cinq)\s+)/i).filter(Boolean);parts.forEach(part=>{let p=part.trim().replace(/[.!?]+$/,'');if(!p)return;let qty='1',name=p;const m=p.match(/^(\d+(?:[,.]\d+)?\s*(?:kg|g|l|cl|ml|paquets?|bouteilles?|boîtes?|packs?|barquettes?|pots?|unités?)?)\s+(?:de\s+|d')?(.*)$/i);if(m){qty=m[1].replace(',','.');name=m[2]||p}else{const words={'un':'1','une':'1','deux':'2','trois':'3','quatre':'4','cinq':'5','six':'6'};const w=p.match(/^(un|une|deux|trois|quatre|cinq|six)\s+(?:de\s+|d')?(.*)$/i);if(w){qty=words[clean(w[1])];name=w[2]}}addItem(name,qty,guessCategory(name),0,false)});save()}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function render(){const current=currentItems();$('remaining').textContent=current.filter(x=>!x.done).length;$('checked').textContent=current.filter(x=>x.done).length;const total=current.filter(x=>!x.done).reduce((s,x)=>s+(Number(x.price)||0)*(parseFloat(x.qty)||1),0);$('total').textContent=euro(total);$('budgetValue').textContent=euro(total);$('budgetBar').style.width=Math.min(100,total/200*100)+'%';const list=$('shoppingList');list.innerHTML='';const shown=current.filter(x=>filter==='all'||(filter==='todo'&&!x.done)||(filter==='done'&&x.done));if(!shown.length){list.innerHTML='<div class="empty"><b>Votre liste est vide</b>Ajoutez vos premiers produits à la voix ou au clavier pour '+escapeHtml(activeStore)+'.</div>'}else categories.forEach(cat=>{const group=shown.filter(x=>x.category===cat);if(!group.length)return;const title=document.createElement('div');title.className='group-title';title.textContent=cat;list.append(title);group.forEach(x=>{const row=document.createElement('div');row.className='item'+(x.done?' done':'');const check=document.createElement('button');check.className='check';check.textContent=x.done?'✓':'';check.onclick=()=>{x.done=!x.done;save()};const details=document.createElement('div');details.className='details';const name=document.createElement('div');name.className='name';name.textContent=x.name;const sub=document.createElement('div');sub.className='sub';sub.textContent=x.category;details.append(name,sub);const qty=document.createElement('span');qty.className='qty';qty.textContent='× '+x.qty;const price=document.createElement('span');price.className='price';price.textContent=x.price?euro(x.price*(parseFloat(x.qty)||1)):'—';const edit=document.createElement('button');edit.className='delete';edit.textContent='⋯';edit.title='Modifier';edit.onclick=()=>openModal(x);const del=document.createElement('button');del.className='delete';del.textContent='×';del.title='Supprimer';del.onclick=()=>{items=items.filter(y=>y.id!==x.id);save()};row.append(check,details,qty,price,edit,del);list.append(row)})});renderSuggestions();renderPriceComparison()}
+function renderPriceComparison(){const target=$('priceComparison');target.innerHTML='';const entries=Object.entries(priceBook).map(([key,prices])=>[key,Object.entries(prices||{}).map(([store,raw])=>[store,getPriceRecord(raw)]).filter(([store,r])=>r&&r.value>0)]).filter(([,valid])=>valid.length);if(!entries.length){target.innerHTML='<div class="sub">Aucun prix enregistré. Saisis le prix d’un produit dans plusieurs magasins pour les comparer.</div>';return}entries.sort((a,b)=>a[0].localeCompare(b[0],'fr'));entries.forEach(([key,valid])=>{valid.sort((a,b)=>a[1].value-b[1].value);const cheapest=valid[0][1].value,row=document.createElement('div');row.className='compare-row';const head=document.createElement('div');head.className='compare-head';const product=document.createElement('span');product.textContent=key;const winner=document.createElement('span');winner.style.color='var(--green)';winner.textContent=valid.length>1?'Moins cher : '+valid[0][0]:'1 prix enregistré';head.append(product,winner);const tags=document.createElement('div');tags.className='compare-prices';valid.forEach(([store,r],i)=>{const tag=document.createElement('div');tag.className='price-line'+(i===0?' best':'');const left=document.createElement('span');left.textContent=store;const right=document.createElement('span');right.textContent=euro(r.value);const meta=document.createElement('small');meta.textContent=(r.source==='online'?'Internet vérifié':'Saisie manuelle')+(r.date?' · '+new Date(r.date+'T12:00:00').toLocaleDateString('fr-FR'):'');left.append(meta);tag.append(left,right);tags.append(tag)});const note=document.createElement('div');note.className='compare-note';note.textContent=valid.length>1?'Écart constaté : '+euro(Math.max(...valid.map(x=>x[1].value))-cheapest)+'. Comparaison des prix unitaires saisis.':'Ajoute un relevé dans un autre magasin pour comparer.';row.append(head,tags,note);target.append(row)})}
+function renderSuggestions(){const now=Date.now(),frequent=Object.values(history).filter(x=>x.count>=2&&now-x.last>5*86400000).sort((a,b)=>b.count-a.count).slice(0,3),target=$('suggestions');target.innerHTML='';if(!frequent.length){target.innerHTML='<div class="sub">Les produits achetés plusieurs fois réapparaîtront ici lorsqu’ils auront été absents de vos listes pendant quelques jours.</div>';return}frequent.forEach(x=>{const row=document.createElement('div');row.className='suggest';const t=document.createElement('span');t.textContent='🕒 '+x.name;const b=document.createElement('button');b.textContent='＋ Ajouter';b.onclick=()=>addItem(x.name);row.append(t,b);target.append(row)})}
+function openModal(item=null){editingId=item?.id||null;$('modalTitle').textContent=item?'Modifier le produit':'Ajouter un produit';$('productName').value=item?.name||'';$('productQty').value=item?.qty||'1';$('productCategory').value=item?.category||categories[0];$('productPrice').value=item?.price||'';$('modalBack').classList.add('show');$('productName').focus()}
 function closeModal(){$('modalBack').classList.remove('show')}
-$('addBtn').onclick=()=>{parsePhrase($('quickInput').value);$('quickInput').value='';};
-$('quickInput').addEventListener('keydown',e=>{if(e.key==='Enter')$('addBtn').click()});
-$('addManual').onclick=()=>openModal();$('cancelModal').onclick=closeModal;
-$('saveProduct').onclick=()=>{
- const name=$('productName').value.trim();if(!name){$('productName').focus();return}
- const obj={name,qty:$('productQty').value.trim()||'1',category:$('productCategory').value,price:Number($('productPrice').value)||0};
- if(editingId){Object.assign(items.find(x=>x.id===editingId),obj);save()}else addItem(obj.name,obj.qty,obj.category,obj.price);
- closeModal();
-};
-$('modalBack').addEventListener('click',e=>{if(e.target===$('modalBack'))closeModal()});
-$('filters').onclick=e=>{const b=e.target.closest('button[data-filter]');if(!b)return;filter=b.dataset.filter;document.querySelectorAll('.chip').forEach(x=>x.classList.toggle('active',x===b));render()};
-$('clearDone').onclick=()=>{items=items.filter(x=>!x.done);save()};
-$('shareBtn').onclick=async()=>{
- const text='Ma liste VOCALIS :\n'+items.map(x=>(x.done?'✓ ':'• ')+x.name+' × '+x.qty).join('\n');
- if(navigator.share){try{await navigator.share({title:'Ma liste VOCALIS',text})}catch(e){}}
- else if(navigator.clipboard){await navigator.clipboard.writeText(text);alert('Liste copiée. Vous pouvez la coller dans un message.')}
- else alert(text);
-};
-$('settingsBtn').onclick=()=>alert('VOCALIS Prototype 1.0\n\nLes données sont enregistrées sur cet appareil. Le partage envoie une copie de la liste. La synchronisation familiale en temps réel et les prix des enseignes seront ajoutés dans une prochaine version.');
-let recognition=null,listening=false;
-const SpeechRecognition=window.SpeechRecognition||window.webkitSpeechRecognition;
-if(SpeechRecognition){
- recognition=new SpeechRecognition();recognition.lang='fr-FR';recognition.continuous=false;recognition.interimResults=false;
- recognition.onstart=()=>{listening=true;$('micBtn').classList.add('listening');$('voiceHint').textContent='Je vous écoute… Dites votre liste.'};
- recognition.onresult=e=>{const said=e.results[0][0].transcript;$('quickInput').value=said;parsePhrase(said);$('quickInput').value='';$('voiceHint').textContent='Ajout vocal : « '+said+' »'};
- recognition.onerror=e=>{$('voiceHint').textContent='La reconnaissance vocale a rencontré un problème. Vous pouvez saisir votre liste.'};
- recognition.onend=()=>{listening=false;$('micBtn').classList.remove('listening');if($('voiceHint').textContent==='Je vous écoute… Dites votre liste.')$('voiceHint').textContent='Touchez le micro pour dicter votre liste.'};
- $('micBtn').onclick=()=>{if(listening)recognition.stop();else try{recognition.start()}catch(e){}};
-}else{
- $('micBtn').onclick=()=>alert('La commande vocale intégrée n’est pas prise en charge par ce navigateur. Utilisez la saisie tactile ou ouvrez VOCALIS dans un navigateur compatible.');
- $('voiceHint').textContent='La saisie tactile fonctionne. La dictée dépend de la compatibilité du navigateur.';
-}
-if('serviceWorker' in navigator && location.protocol.startsWith('http'))window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js').catch(()=>{}));
-render();
+function renderStoreControls(){const select=$('storeSelect');select.innerHTML='';stores.forEach(store=>{const o=document.createElement('option');o.value=store;o.textContent=store;select.append(o)});if(!stores.includes(activeStore))activeStore=stores[0]||'Mon magasin';select.value=activeStore;$('storeHint').textContent='Liste et budget affichés pour : '+activeStore+'. Les autres magasins conservent leurs propres articles.';renderStoreList()}
+function saveStores(){localStorage.setItem(STORES,JSON.stringify(stores));localStorage.setItem(ACTIVE_STORE,activeStore);renderStoreControls()}
+function renderStoreList(){const target=$('storeList');if(!target)return;target.innerHTML='';stores.forEach(store=>{const row=document.createElement('div');row.className='suggest';const label=document.createElement('span');label.textContent=store;const actions=document.createElement('div');const choose=document.createElement('button');choose.textContent=store===activeStore?'Sélectionné':'Choisir';choose.onclick=()=>{activeStore=store;saveStores();render()};actions.append(choose);if(stores.length>1){const del=document.createElement('button');del.textContent='Supprimer';del.style.marginLeft='6px';del.onclick=()=>{if(!confirm('Supprimer '+store+' ? Les articles de cette liste seront également supprimés.'))return;stores=stores.filter(s=>s!==store);items=items.filter(x=>x.store!==store);if(activeStore===store)activeStore=stores[0];saveStores();save()};actions.append(del)}row.append(label,actions);target.append(row)})}
+function openPriceModal(){const names=[...new Set([...items.map(x=>x.name),...Object.keys(priceBook).map(k=>k)])];$('knownProducts').innerHTML='';names.forEach(n=>{const o=document.createElement('option');o.value=n;$('knownProducts').append(o)});$('priceProduct').value='';$('priceStore').innerHTML='';stores.forEach(s=>{const o=document.createElement('option');o.value=s;o.textContent=s;$('priceStore').append(o)});$('priceStore').value=activeStore;$('priceValue').value='';$('priceSource').value='manual';$('priceDate').value=new Date().toISOString().slice(0,10);$('priceModalBack').classList.add('show');$('priceProduct').focus()}
+$('addBtn').onclick=()=>{$('quickInput').value.trim()&&parsePhrase($('quickInput').value);$('quickInput').value=''};$('quickInput').addEventListener('keydown',e=>{if(e.key==='Enter')$('addBtn').click()});$('addManual').onclick=()=>openModal();$('cancelModal').onclick=closeModal;
+$('saveProduct').onclick=()=>{const name=$('productName').value.trim();if(!name){$('productName').focus();return}const obj={name,qty:$('productQty').value.trim()||'1',category:$('productCategory').value,price:Number($('productPrice').value)||0};if(editingId){const item=items.find(x=>x.id===editingId);if(item){Object.assign(item,obj);if(obj.price>0)recordPrice(obj.name,item.store||activeStore,obj.price)}save()}else addItem(obj.name,obj.qty,obj.category,obj.price);closeModal()};
+$('modalBack').addEventListener('click',e=>{if(e.target===$('modalBack'))closeModal()});$('filters').onclick=e=>{const b=e.target.closest('button[data-filter]');if(!b)return;filter=b.dataset.filter;document.querySelectorAll('.chip').forEach(x=>x.classList.toggle('active',x===b));render()};$('clearDone').onclick=()=>{items=items.filter(x=>!x.done||(x.store||stores[0])!==activeStore);save()};
+$('shareBtn').onclick=async()=>{const text='Ma liste VOCALIS — '+activeStore+' :\n'+currentItems().map(x=>(x.done?'✓ ':'• ')+x.name+' × '+x.qty).join('\n');if(navigator.share){try{await navigator.share({title:'Ma liste VOCALIS',text})}catch(e){}}else if(navigator.clipboard){await navigator.clipboard.writeText(text);alert('Liste copiée. Vous pouvez la coller dans un message.')}else alert(text)};
+$('settingsBtn').onclick=()=>alert('VOCALIS 1.3\n\nVos listes et prix sont conservés localement sur cet appareil. Le comparateur distingue les saisies manuelles des prix Internet vérifiés. Aucun prix Internet n’est inventé.');
+$('manageStores').onclick=()=>{$('storeModalBack').classList.add('show');renderStoreList()};$('closeStores').onclick=()=>$('storeModalBack').classList.remove('show');$('storeModalBack').addEventListener('click',e=>{if(e.target===$('storeModalBack'))$('storeModalBack').classList.remove('show')});
+$('addStore').onclick=()=>{const name=$('newStoreName').value.trim();if(!name)return;if(stores.some(s=>clean(s)===clean(name))){alert('Ce magasin existe déjà.');return}stores.push(name);activeStore=name;$('newStoreName').value='';saveStores();render()};
+$('storeSelect').onchange=e=>{activeStore=e.target.value;saveStores();render()};
+$('managePrices').onclick=openPriceModal;$('cancelPrice').onclick=()=>$('priceModalBack').classList.remove('show');$('priceModalBack').addEventListener('click',e=>{if(e.target===$('priceModalBack'))$('priceModalBack').classList.remove('show')});
+$('savePrice').onclick=()=>{const name=$('priceProduct').value.trim(),store=$('priceStore').value,value=Number($('priceValue').value);if(!name){alert('Indique le nom du produit.');$('priceProduct').focus();return}if(!Number.isFinite(value)||value<=0){alert('Indique un prix supérieur à zéro.');$('priceValue').focus();return}recordPrice(name,store,value,$('priceSource').value,$('priceDate').value||new Date().toISOString().slice(0,10));$('priceModalBack').classList.remove('show');renderPriceComparison()};
+$('internetInfo').onclick=()=>alert('Pour récupérer automatiquement des prix, VOCALIS doit être relié à une API ou à un service autorisé par les enseignes. Un fichier HTML seul ne peut pas interroger fiablement les sites marchands (restrictions techniques et conditions d’accès). La connexion d’un fournisseur sera une étape séparée ; les prix Internet seront alors datés et sourcés.');
+$('storeSelect').onchange=e=>{activeStore=e.target.value;saveStores();render()};
+let recognition=null,listening=false;const SpeechRecognition=window.SpeechRecognition||window.webkitSpeechRecognition;
+if(SpeechRecognition){recognition=new SpeechRecognition();recognition.lang='fr-FR';recognition.continuous=false;recognition.interimResults=false;recognition.onstart=()=>{listening=true;$('micBtn').classList.add('listening');$('voiceHint').textContent='Je vous écoute… Dites votre liste.'};recognition.onresult=e=>{const said=e.results[0][0].transcript;$('quickInput').value=said;parsePhrase(said);$('quickInput').value='';$('voiceHint').textContent='Ajout vocal : « '+said+' »'};recognition.onerror=()=>{$('voiceHint').textContent='La reconnaissance vocale a rencontré un problème. Vous pouvez saisir votre liste.'};recognition.onend=()=>{listening=false;$('micBtn').classList.remove('listening');if($('voiceHint').textContent==='Je vous écoute… Dites votre liste.')$('voiceHint').textContent='Touchez le micro pour dicter votre liste.'};$('micBtn').onclick=()=>{if(listening)recognition.stop();else try{recognition.start()}catch(e){}}}else{$('micBtn').onclick=()=>alert('La commande vocale intégrée n’est pas prise en charge par ce navigateur. Utilisez la saisie tactile ou ouvrez VOCALIS dans un navigateur compatible.');$('voiceHint').textContent='La saisie tactile fonctionne. La dictée dépend de la compatibilité du navigateur.'}
+if('serviceWorker'in navigator&&location.protocol.startsWith('http'))window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js').catch(()=>{}));
+renderStoreControls();render();
 </script>
 </body>
 </html>
