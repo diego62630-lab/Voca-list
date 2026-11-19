@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#174b3a">
+<meta name="description" content="VOCALIS, votre assistant intelligent de courses vocal et tactile.">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png">
+<title>VOCALIS — Assistant de courses</title>
+<style>
+:root{--green:#174b3a;--green2:#23634c;--mint:#e8f3ec;--bg:#f5f7f4;--ink:#1b2922;--muted:#718078;--line:#e3eae5;--white:#fff;--orange:#f3a847}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+button,input{font:inherit}button{cursor:pointer}.app{max-width:760px;margin:auto;min-height:100vh;padding:env(safe-area-inset-top) 16px calc(24px + env(safe-area-inset-bottom))}
+header{display:flex;align-items:center;justify-content:space-between;padding:20px 2px 16px}.brand{display:flex;align-items:center;gap:10px}.logo{width:42px;height:42px;border-radius:14px;background:var(--green);display:grid;place-items:center;color:#fff;font-size:23px}.brand strong{font-size:21px;letter-spacing:1.5px}.brand small{display:block;color:var(--muted);font-size:11px;letter-spacing:.3px}.iconbtn{border:1px solid var(--line);background:white;border-radius:13px;padding:10px 12px;color:var(--green)}
+.hero{background:linear-gradient(135deg,#174b3a,#276a50);color:#fff;border-radius:24px;padding:20px;box-shadow:0 10px 26px #174b3a20}.hero-top{display:flex;justify-content:space-between;align-items:center}.eyebrow{font-size:11px;letter-spacing:1.3px;text-transform:uppercase;opacity:.75}.hero h1{font-size:25px;line-height:1.15;margin:8px 0}.hero p{font-size:13px;opacity:.82;margin:0 0 17px}.voicebar{display:flex;gap:9px;align-items:center}.voicebar input{flex:1;min-width:0;border:0;border-radius:14px;padding:14px 13px;background:#fff;color:var(--ink);outline:none}.mic{width:50px;height:48px;border:0;border-radius:15px;background:#f3b85f;color:#38280f;font-size:21px}.mic.listening{background:#ffdddd;animation:pulse 1s infinite}@keyframes pulse{50%{transform:scale(1.05)}}.add{border:0;background:#fff;color:var(--green);font-weight:700;border-radius:14px;padding:0 15px}
+.hint{font-size:11px;opacity:.72;margin-top:10px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:16px 0}.stat{background:#fff;border:1px solid var(--line);border-radius:17px;padding:13px}.stat b{display:block;font-size:20px;color:var(--green)}.stat span{font-size:11px;color:var(--muted)}
+.toolbar{display:flex;align-items:center;justify-content:space-between;margin:20px 2px 10px}.toolbar h2{font-size:18px;margin:0}.filters{display:flex;gap:7px;overflow:auto;padding:2px 0 8px}.chip{border:1px solid var(--line);background:#fff;color:var(--muted);padding:8px 12px;border-radius:99px;white-space:nowrap;font-size:12px}.chip.active{background:var(--mint);border-color:#c7ddce;color:var(--green);font-weight:700}
+.list{display:grid;gap:9px}.group-title{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin:12px 4px 2px}.item{display:flex;align-items:center;gap:11px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px}.check{width:23px;height:23px;border:1.7px solid #b8c8be;border-radius:8px;background:white;flex:none;display:grid;place-items:center;color:#fff}.item.done .check{background:var(--green);border-color:var(--green)}.item.done .name{text-decoration:line-through;color:#9aa69f}.details{flex:1;min-width:0}.name{font-weight:650;font-size:14px}.sub{font-size:11px;color:var(--muted);margin-top:3px}.qty{font-size:12px;color:var(--green);font-weight:700;background:var(--mint);padding:6px 8px;border-radius:9px}.price{font-size:12px;color:var(--muted);min-width:48px;text-align:right}.delete{border:0;background:transparent;color:#a4afa8;font-size:19px;padding:3px}
+.empty{background:#fff;border:1px dashed #cbd8cf;border-radius:18px;text-align:center;padding:28px 15px;color:var(--muted);font-size:13px}.empty b{display:block;color:var(--ink);font-size:15px;margin-bottom:5px}
+.bottom{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}.secondary{border:1px solid var(--line);background:#fff;color:var(--green);border-radius:14px;padding:13px;font-weight:650}.primary{border:0;background:var(--green);color:#fff;border-radius:14px;padding:13px;font-weight:700}
+.panel{background:#fff;border:1px solid var(--line);border-radius:18px;padding:15px;margin-top:15px}.panel h3{font-size:15px;margin:0 0 10px}.budgetrow{display:flex;justify-content:space-between;font-size:13px;margin:7px 0}.budgetrow strong{color:var(--green)}.progress{height:7px;background:#edf1ee;border-radius:99px;overflow:hidden;margin-top:10px}.progress i{display:block;height:100%;background:#55a879;width:0}
+.suggest{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 0;border-top:1px solid var(--line);font-size:13px}.suggest button{border:1px solid #c9ddcf;background:var(--mint);color:var(--green);border-radius:10px;padding:7px 10px;font-size:12px;font-weight:700}
+footer{text-align:center;color:#9aa69f;font-size:10px;padding:22px 0 8px}
+.modalback{position:fixed;inset:0;background:#10251dcc;display:none;align-items:flex-end;justify-content:center;padding:12px;z-index:5}.modalback.show{display:flex}.modal{background:#fff;border-radius:22px;padding:20px;width:min(100%,520px);max-height:85vh;overflow:auto}.modal h2{margin:0 0 14px;font-size:19px}.field{display:grid;gap:5px;margin:10px 0}.field label{font-size:12px;color:var(--muted)}.field input,.field select{width:100%;border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff;color:var(--ink)}.modalactions{display:flex;gap:9px;margin-top:16px}.modalactions button{flex:1}
+@media(min-width:650px){.app{padding-left:24px;padding-right:24px}.hero{padding:25px}.hero h1{font-size:29px}}
+</style>
+</head>
+<body>
+<div class="app">
+<header>
+ <div class="brand"><div class="logo">🛒</div><div><strong>VOCALIS</strong><small>LES COURSES, EN TOUTE SIMPLICITÉ</small></div></div>
+ <button class="iconbtn" id="settingsBtn" aria-label="Paramètres">⚙</button>
+</header>
+<section class="hero">
+ <div class="hero-top"><span class="eyebrow">Votre assistant de courses</span><span>✨</span></div>
+ <h1>Qu'est-ce qu'il<br>vous faut aujourd'hui ?</h1>
+ <p>Parlez naturellement ou ajoutez vos produits ci-dessous.</p>
+ <div class="voicebar">
+  <input id="quickInput" placeholder="Ex. : ajoute 2 litres de lait…" autocomplete="off">
+  <button class="mic" id="micBtn" aria-label="Commande vocale">🎙️</button>
+  <button class="add" id="addBtn">Ajouter</button>
+ </div>
+ <div class="hint" id="voiceHint">Touchez le micro pour dicter votre liste.</div>
+</section>
+<div class="stats">
+ <div class="stat"><b id="remaining">0</b><span>À acheter</span></div>
+ <div class="stat"><b id="checked">0</b><span>Dans le panier</span></div>
+ <div class="stat"><b id="total">0,00 €</b><span>Budget estimé</span></div>
+</div>
+<div class="toolbar"><h2>Ma liste</h2><button class="iconbtn" id="shareBtn">↗ Partager</button></div>
+<div class="filters" id="filters">
+ <button class="chip active" data-filter="all">Tout</button><button class="chip" data-filter="todo">À acheter</button><button class="chip" data-filter="done">Dans le panier</button>
+</div>
+<div id="shoppingList" class="list"></div>
+<div class="bottom">
+ <button class="secondary" id="addManual">＋ Ajouter un produit</button>
+ <button class="primary" id="clearDone">Vider les articles cochés</button>
+</div>
+<section class="panel">
+ <h3>💡 Votre mémoire intelligente</h3>
+ <div id="suggestions"><div class="sub">Ajoutez quelques produits pour que VOCALIS repère vos habitudes.</div></div>
+</section>
+<section class="panel">
+ <h3>💶 Suivi du budget</h3>
+ <div class="budgetrow"><span>Estimation des articles restants</span><strong id="budgetValue">0,00 €</strong></div>
+ <div class="progress"><i id="budgetBar"></i></div>
+ <div class="sub" style="margin-top:8px">Renseignez un prix sur chaque produit pour affiner votre estimation.</div>
+</section>
+<footer>VOCALIS · Prototype 1.0 · Vos données restent sur cet appareil</footer>
+</div>
+
+<div class="modalback" id="modalBack"><div class="modal">
+ <h2 id="modalTitle">Ajouter un produit</h2>
+ <div class="field"><label for="productName">Produit</label><input id="productName" placeholder="Ex. : lait demi-écrémé"></div>
+ <div class="field"><label for="productQty">Quantité</label><input id="productQty" placeholder="Ex. : 2 bouteilles"></div>
+ <div class="field"><label for="productCategory">Rayon</label><select id="productCategory"><option>Fruits et légumes</option><option>Boulangerie</option><option>Produits frais</option><option>Viandes et poissons</option><option>Épicerie</option><option>Boissons</option><option sur le="true">Hygiène et entretien</option><option>Autres</option></select></div>
+ <div class="field"><label for="productPrice">Prix unitaire estimé (€) — facultatif</label><input id="productPrice" type="number" min="0" step=".01" placeholder="Ex. : 1.50"></div>
+ <div class="modalactions"><button class="secondary" id="cancelModal">Annuler</button><button class="primary" id="saveProduct">Enregistrer</button></div>
+</div></div>
+<script>
+const KEY='vocalis_items_v1', HISTORY='vocalis_history_v1';
+let items=JSON.parse(localStorage.getItem(KEY)||'[]');
+let history=JSON.parse(localStorage.getItem(HISTORY)||'{}');
+let filter='all', editingId=null;
+const $=id=>document.getElementById(id);
+const categories=['Fruits et légumes','Boulangerie','Produits frais','Viandes et poissons','Épicerie','Boissons','Hygiène et entretien','Autres'];
+function save(){localStorage.setItem(KEY,JSON.stringify(items));localStorage.setItem(HISTORY,JSON.stringify(history));render()}
+function clean(s){return s.toLocaleLowerCase('fr').normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim()}
+function guessCategory(name){
+ const n=clean(name);
+ if(/pomme|banane|orange|tomate|salade|carotte|oignon|pomme de terre|poire|fraise|courgette/.test(n))return categories[0];
+ if(/pain|baguette|croissant|brioche/.test(n))return categories[1];
+ if(/lait|yaourt|fromage|beurre|creme|oeuf|crème/.test(n))return categories[2];
+ if(/jambon|poulet|boeuf|steak|poisson|saumon|saucisse|viande/.test(n))return categories[3];
+ if(/eau|jus|soda|cafe|the|sirop/.test(n))return categories[5];
+ if(/lessive|savon|shampoing|papier toilette|dentifrice|nettoyant/.test(n))return categories[6];
+ return categories[4];
+}
+function parsePhrase(raw){
+ let text=raw.trim().replace(/^(ajoute|ajouter|mets|met|n'oublie pas|pense à|il me faut|je veux)\s+/i,'');
+ let parts=text.split(/\s*(?:,|;|\bet\b|\bpuis\b)\s*/i).filter(Boolean);
+ if(parts.length===1 && parts[0].split(/\s+/).length>5) parts=parts[0].split(/\s+(?=(?:du|de la|des|un|une|deux|trois|quatre|cinq)\s+)/i).filter(Boolean);
+ parts.forEach(part=>{
+   let p=part.trim().replace(/[.!?]+$/,''); if(!p)return;
+   let qty='1', name=p;
+   const m=p.match(/^(\d+(?:[,.]\d+)?\s*(?:kg|g|l|cl|ml|paquets?|bouteilles?|boîtes?|packs?|barquettes?|pots?|unités?)?)\s+(?:de\s+|d')?(.*)$/i);
+   if(m){qty=m[1].replace(',','.');name=m[2]||p}
+   else {
+     const words={'un':'1','une':'1','deux':'2','trois':'3','quatre':'4','cinq':'5','six':'6'};
+     const w=p.match(/^(un|une|deux|trois|quatre|cinq|six)\s+(?:de\s+|d')?(.*)$/i);
+     if(w){qty=words[clean(w[1])];name=w[2]}
+   }
+   addItem(name,qty,guessCategory(name),0,false);
+ });
+}
+function addItem(name,qty='1',category=null,price=0,rerender=true){
+ name=name.trim();if(!name)return;
+ const existing=items.find(x=>clean(x.name)===clean(name)&&!x.done);
+ if(existing){existing.qty=mergeQty(existing.qty,qty)}
+ else items.push({id:crypto.randomUUID?crypto.randomUUID():String(Date.now()+Math.random()),name,qty,category:category||guessCategory(name),price:Number(price)||0,done:false,created:Date.now()});
+ history[clean(name)]={name,last:Date.now(),count:(history[clean(name)]?.count||0)+1};
+ if(rerender)save();
+}
+function mergeQty(a,b){if(/^\d+(\.\d+)?$/.test(a)&&/^\d+(\.\d+)?$/.test(b))return String(Number(a)+Number(b));return a+' + '+b}
+function render(){
+ $('remaining').textContent=items.filter(x=>!x.done).length;
+ $('checked').textContent=items.filter(x=>x.done).length;
+ const total=items.filter(x=>!x.done).reduce((s,x)=>s+(Number(x.price)||0)*(parseFloat(x.qty)||1),0);
+ $('total').textContent=total.toFixed(2).replace('.',',')+' €';$('budgetValue').textContent=total.toFixed(2).replace('.',',')+' €';
+ $('budgetBar').style.width=Math.min(100,total/200*100)+'%';
+ const list=$('shoppingList');list.innerHTML='';
+ let shown=items.filter(x=>filter==='all'||(filter==='todo'&&!x.done)||(filter==='done'&&x.done));
+ if(!shown.length){list.innerHTML='<div class="empty"><b>Votre liste est vide</b>Ajoutez vos premiers produits à la voix ou au clavier.</div>'}
+ else categories.forEach(cat=>{
+   const group=shown.filter(x=>x.category===cat);if(!group.length)return;
+   const title=document.createElement('div');title.className='group-title';title.textContent=cat;list.append(title);
+   group.forEach(x=>{
+    const row=document.createElement('div');row.className='item'+(x.done?' done':'');
+    const check=document.createElement('button');check.className='check';check.textContent=x.done?'✓':'';check.onclick=()=>{x.done=!x.done;save()};
+    const details=document.createElement('div');details.className='details';
+    const name=document.createElement('div');name.className='name';name.textContent=x.name;
+    const sub=document.createElement('div');sub.className='sub';sub.textContent=x.category;
+    details.append(name,sub);
+    const qty=document.createElement('span');qty.className='qty';qty.textContent='× '+x.qty;
+    const price=document.createElement('span');price.className='price';price.textContent=x.price?((x.price*(parseFloat(x.qty)||1)).toFixed(2).replace('.',',')+' €'):'—';
+    const edit=document.createElement('button');edit.className='delete';edit.textContent='⋯';edit.title='Modifier';edit.onclick=()=>openModal(x);
+    const del=document.createElement('button');del.className='delete';del.textContent='×';del.title='Supprimer';del.onclick=()=>{items=items.filter(y=>y.id!==x.id);save()};
+    row.append(check,details,qty,price,edit,del);list.append(row);
+   });
+ });
+ renderSuggestions();
+}
+function renderSuggestions(){
+ const now=Date.now(), frequent=Object.values(history).filter(x=>x.count>=2&&now-x.last>5*86400000).sort((a,b)=>b.count-a.count).slice(0,3);
+ const target=$('suggestions');target.innerHTML='';
+ if(!frequent.length){target.innerHTML='<div class="sub">Les produits achetés plusieurs fois réapparaîtront ici lorsqu’ils auront été absents de vos listes pendant quelques jours.</div>';return}
+ frequent.forEach(x=>{const row=document.createElement('div');row.className='suggest';const t=document.createElement('span');t.textContent='🕒 '+x.name;const b=document.createElement('button');b.textContent='＋ Ajouter';b.onclick=()=>addItem(x.name);row.append(t,b);target.append(row)});
+}
+function openModal(item=null){
+ editingId=item?.id||null;$('modalTitle').textContent=item?'Modifier le produit':'Ajouter un produit';
+ $('productName').value=item?.name||'';$('productQty').value=item?.qty||'1';$('productCategory').value=item?.category||categories[0];$('productPrice').value=item?.price||'';
+ $('modalBack').classList.add('show');$('productName').focus();
+}
+function closeModal(){$('modalBack').classList.remove('show')}
+$('addBtn').onclick=()=>{parsePhrase($('quickInput').value);$('quickInput').value='';};
+$('quickInput').addEventListener('keydown',e=>{if(e.key==='Enter')$('addBtn').click()});
+$('addManual').onclick=()=>openModal();$('cancelModal').onclick=closeModal;
+$('saveProduct').onclick=()=>{
+ const name=$('productName').value.trim();if(!name){$('productName').focus();return}
+ const obj={name,qty:$('productQty').value.trim()||'1',category:$('productCategory').value,price:Number($('productPrice').value)||0};
+ if(editingId){Object.assign(items.find(x=>x.id===editingId),obj);save()}else addItem(obj.name,obj.qty,obj.category,obj.price);
+ closeModal();
+};
+$('modalBack').addEventListener('click',e=>{if(e.target===$('modalBack'))closeModal()});
+$('filters').onclick=e=>{const b=e.target.closest('button[data-filter]');if(!b)return;filter=b.dataset.filter;document.querySelectorAll('.chip').forEach(x=>x.classList.toggle('active',x===b));render()};
+$('clearDone').onclick=()=>{items=items.filter(x=>!x.done);save()};
+$('shareBtn').onclick=async()=>{
+ const text='Ma liste VOCALIS :\n'+items.map(x=>(x.done?'✓ ':'• ')+x.name+' × '+x.qty).join('\n');
+ if(navigator.share){try{await navigator.share({title:'Ma liste VOCALIS',text})}catch(e){}}
+ else if(navigator.clipboard){await navigator.clipboard.writeText(text);alert('Liste copiée. Vous pouvez la coller dans un message.')}
+ else alert(text);
+};
+$('settingsBtn').onclick=()=>alert('VOCALIS Prototype 1.0\n\nLes données sont enregistrées sur cet appareil. Le partage envoie une copie de la liste. La synchronisation familiale en temps réel et les prix des enseignes seront ajoutés dans une prochaine version.');
+let recognition=null,listening=false;
+const SpeechRecognition=window.SpeechRecognition||window.webkitSpeechRecognition;
+if(SpeechRecognition){
+ recognition=new SpeechRecognition();recognition.lang='fr-FR';recognition.continuous=false;recognition.interimResults=false;
+ recognition.onstart=()=>{listening=true;$('micBtn').classList.add('listening');$('voiceHint').textContent='Je vous écoute… Dites votre liste.'};
+ recognition.onresult=e=>{const said=e.results[0][0].transcript;$('quickInput').value=said;parsePhrase(said);$('quickInput').value='';$('voiceHint').textContent='Ajout vocal : « '+said+' »'};
+ recognition.onerror=e=>{$('voiceHint').textContent='La reconnaissance vocale a rencontré un problème. Vous pouvez saisir votre liste.'};
+ recognition.onend=()=>{listening=false;$('micBtn').classList.remove('listening');if($('voiceHint').textContent==='Je vous écoute… Dites votre liste.')$('voiceHint').textContent='Touchez le micro pour dicter votre liste.'};
+ $('micBtn').onclick=()=>{if(listening)recognition.stop();else try{recognition.start()}catch(e){}};
+}else{
+ $('micBtn').onclick=()=>alert('La commande vocale intégrée n’est pas prise en charge par ce navigateur. Utilisez la saisie tactile ou ouvrez VOCALIS dans un navigateur compatible.');
+ $('voiceHint').textContent='La saisie tactile fonctionne. La dictée dépend de la compatibilité du navigateur.';
+}
+if('serviceWorker' in navigator && location.protocol.startsWith('http'))window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js').catch(()=>{}));
+render();
+</script>
+</body>
+</html>
